@@ -12,7 +12,7 @@ const Banner = () => {
           >
             Instagram Users Analytics Tool
           </p>
-          <p className="text-lg sm:text-xl md:text-lg max-w-[25ch] mt-5">
+          <p className="font-medium sm:text-lg md:text-base lg:text-lg xl:text-xl max-w-[25ch] mt-5">
             Analyze Detailed view of Instagram Profiles
           </p>
           <form onSubmit={(e) => e.preventDefault()}>
