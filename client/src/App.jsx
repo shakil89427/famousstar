@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/global/Header";
 import Footer from "./components/global/Footer";
 import Home from "./pages/Home";
-import Details from "./pages/Details";
+import Result from "./pages/Result";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route path="details" element={<Details />} />
+          <Route path="result" element={<Result />} />
         </Route>
       </Routes>
       {/* <Footer /> */}
