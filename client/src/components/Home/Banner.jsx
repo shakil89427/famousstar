@@ -1,7 +1,12 @@
 import bannerbg from "../../assets/bannerbg.png";
 import instagram from "../../assets/instagram.png";
+import { useNavigate } from "react-router-dom";
+import useUrlStore from "../../hooks/stores/useUrlStore";
 
 const Banner = () => {
+  const { setUrl } = useUrlStore();
+  const navigate = useNavigate();
+
   return (
     <div className="grid grid-cols-12 rounded-xl overflow-hidden max-w-[1100px] mx-auto">
       <div className=" bg-black text-white px-5 py-7 sm:p-10 md:p-5 lg:p-10 col-span-12 md:col-span-7 flex items-center justify-start">
@@ -15,12 +20,18 @@ const Banner = () => {
           <p className="font-medium sm:text-lg md:text-base lg:text-lg xl:text-xl max-w-[25ch] mt-5">
             Analyze Detailed view of Instagram Profiles
           </p>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setUrl(e.target[0].value);
+              navigate("/result");
+            }}
+          >
             <label
               htmlFor="url"
               className="flex items-center mt-5 rounded-lg overflow-hidden h-11 sm:h-12 md:h-11 lg:h-12 bg-[#444444] border"
             >
-              <div className="h-full aspect-square flex items-center justify-center bg-black border-r rounded-tr-lg rounded-br-lg">
+              <div className="h-full aspect-square flex items-center justify-center bg-black border-r">
                 <img
                   src={instagram}
                   alt=""
@@ -29,9 +40,10 @@ const Banner = () => {
               </div>
               <input
                 id="url"
-                type="text"
+                type="url"
                 placeholder="https://instagram.com/therock"
-                className="grow border-0 outline-none px-1 bg-transparent"
+                required
+                className="grow border-0 outline-none px-2 bg-transparent h-full"
               />
             </label>
             <button

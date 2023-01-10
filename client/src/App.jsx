@@ -13,7 +13,7 @@ const App = () => {
           <Route path="result" element={<Result />} />
         </Route>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

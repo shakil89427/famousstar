@@ -1,6 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import useUrlStore from "../hooks/stores/useUrlStore";
 
 const Result = () => {
+  const { url } = useUrlStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!url) return navigate("/");
+  }, [url]);
+
   return (
     <div className="max-w-[1100px] mx-auto mt-12">
       <div className="flex items-start justify-start gap-2">
