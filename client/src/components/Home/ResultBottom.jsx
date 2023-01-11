@@ -2,6 +2,8 @@ import blackbg from "../../assets/blackbg.png";
 import getdetailedbg from "../../assets/getdetailedbg.png";
 import map from "../../assets/map.png";
 import girlbg from "../../assets/girlbg.png";
+import arrowgreen from "../../assets/arrowgreen.png";
+import arrowred from "../../assets/arrowred.png";
 
 const ResultBottom = () => {
   return (
