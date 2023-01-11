@@ -1,17 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoblack from "../../assets/logoblack.png";
 
 const Header = () => {
-  const navigate = useNavigate();
-
   return (
     <header className="container headerview flex items-center justify-between">
-      <img
-        src={logoblack}
-        alt=""
-        className="w-[130px] md:w-[145px] lg:w-[170] xl:w-[185px] cursor-pointer"
-        onClick={() => navigate("/")}
-      />
+      <Link to="/">
+        <img
+          src={logoblack}
+          alt=""
+          className="w-[130px] md:w-[145px] lg:w-[170] xl:w-[185px] cursor-pointer"
+        />
+      </Link>
       <a
         href="mailto:contact@famousstar.com"
         style={{ letterSpacing: "1.2px" }}
