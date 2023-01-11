@@ -1,13 +1,13 @@
 import Banner from "../components/Home/Banner";
-import { Outlet } from "react-router-dom";
+import Result from "../components/Home/Result";
 import ResultBottom from "../components/Home/ResultBottom";
 
 const Home = () => {
   return (
     <div className="container">
       <Banner />
-      <Outlet />
-      <ResultBottom/>
+      <Result />
+      <ResultBottom />
     </div>
   );
 };
