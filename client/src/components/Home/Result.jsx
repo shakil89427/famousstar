@@ -1,21 +1,30 @@
+import { useRef, useEffect } from "react";
 import useInstagram from "../../hooks/stores/useInstagram";
 
 const Result = () => {
+  const loadingRef = useRef();
+  const loading = useInstagram((state) => state.loading);
   const data = useInstagram((state) => state.data);
+
+  useEffect(() => {
+    if (!loading || !loadingRef.current) return;
+    loadingRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [loading]);
+
+  if (loading) {
+    return (
+      <div ref={loadingRef} className="mt-12">
+        <div className="animate-spin w-8 h-8 border-4 border-r-black rounded-full mx-auto" />
+        <p className="text-center text-sm mt-2 font-medium">Please wait...</p>
+      </div>
+    );
+  }
 
   if (!data) return null;
 
   return (
-    <div className="max-w-[1100px] mx-auto">
-      <p
-        style={{
-          backgroundImage: "linear-gradient(20deg, #FA8F21, #AE3497)",
-        }}
-        className="w-full max-w-[380px] text-center mx-auto mt-12 py-4 rounded-lg text-white text-lg font-semibold select-none"
-      >
-        User Instagram Analytics Result
-      </p>
-      <div className="flex items-start justify-start gap-2 mt-12">
+    <div className="max-w-[1100px] mx-auto mt-12">
+      <div className="flex items-start justify-start gap-2">
         <img
           src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"
           alt=""
