@@ -15,7 +15,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="py-12 bg-black mt-12 text-white">
+    <footer className="py-12 bg-black mt-28 text-white">
       <div className="container">
         <div className="grid grid-cols-2 w-fit mx-auto gap-5 font-medium">
           {routes.map((route) => (

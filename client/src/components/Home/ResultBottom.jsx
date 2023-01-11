@@ -49,6 +49,32 @@ const ResultBottom = () => {
         </p>
         <img src={girlbg} alt="" className="mt-7 w-full" />
       </div>
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 w-fit mx-auto">
+        <div>
+          <div className="shadow flex items-center justify-center rounded-xl text-lg sm:text-xl lg:text-2xl border w-44 lg:w-48 xl:w-52 h-20 mb-3">
+            <span className="font-semibold">231</span>
+            <img src={arrowgreen} alt="" className="mx-2 w-6" />
+            <span className="text-gray-500">2.1%</span>
+          </div>
+          <p className="text-center font-medium">Likes</p>
+        </div>
+        <div>
+          <div className="shadow flex items-center justify-center rounded-xl text-lg sm:text-xl lg:text-2xl border w-44 lg:w-48 xl:w-52 h-20 mb-3">
+            <span className="font-semibold">12</span>
+            <img src={arrowred} alt="" className="mx-2 w-6" />
+            <span className="text-gray-500">2.1%</span>
+          </div>
+          <p className="text-center font-medium">Comments</p>
+        </div>
+        <div>
+          <div className="shadow flex items-center justify-center rounded-xl text-lg sm:text-xl lg:text-2xl border w-44 lg:-w-48 xl:w-52 h-20 mb-3">
+            <span className="font-semibold">231</span>
+            <img src={arrowred} alt="" className="mx-2 w-6" />
+            <span className="text-gray-500">2.1%</span>
+          </div>
+          <p className="text-center font-medium">Engagement rate</p>
+        </div>
+      </div>
     </div>
   );
 };
