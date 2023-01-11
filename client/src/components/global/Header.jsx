@@ -9,7 +9,7 @@ const Header = () => {
       <img
         src={logoblack}
         alt=""
-        className="w-[130px] md:w-[145px] lg:w-[160] xl:w-[175px] cursor-pointer"
+        className="w-[130px] md:w-[145px] lg:w-[170] xl:w-[185px] cursor-pointer"
         onClick={() => navigate("/")}
       />
       <a
