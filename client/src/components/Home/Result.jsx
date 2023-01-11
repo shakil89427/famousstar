@@ -1,10 +1,12 @@
 import { useRef, useEffect } from "react";
+import millify from "millify";
 import useInstagram from "../../hooks/stores/useInstagram";
 
 const Result = () => {
   const loadingRef = useRef();
   const loading = useInstagram((state) => state.loading);
   const data = useInstagram((state) => state.data);
+  const error = useInstagram((state) => state.error);
 
   useEffect(() => {
     if (!loading || !loadingRef.current) return;
@@ -20,33 +22,24 @@ const Result = () => {
     );
   }
 
+  if (error) {
+    return <p className="text-center mt-12">Something went wrong</p>;
+  }
+
   if (!data) return null;
 
   return (
     <div className="max-w-[1100px] mx-auto mt-12">
       <div className="flex items-start justify-start gap-2">
         <img
-          src="https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg"
+          src={`data:image/png;base64, ${data?.images?.profileImage}`}
           alt=""
           className="aspect-square w-14 object-cover object-center rounded-full border"
         />
         <div className="mt-1">
-          <p className="font-semibold text-lg">Andrew John</p>
-          <p className="text-sm text-gray-500">@andrew</p>
-          <p className="mt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-            iusto sed dolor blanditiis repellendus! Consequatur perferendis
-            corporis commodi unde repellendus quaerat reiciendis dolores
-            officiis eos odit. Ducimus nam at similique enim, rerum iure, minus
-            eligendi saepe fugit sapiente natus, tempora veritatis. Corporis
-            totam omnis voluptatum soluta perspiciatis culpa minus repudiandae?
-            Consequatur et, vitae veniam at excepturi cumque optio eos dolor
-            fuga blanditiis omnis placeat laudantium numquam vel qui ullam
-            ratione quis, maxime dolorum ipsum perspiciatis dolorem voluptate?
-            Eligendi tempora quis maiores, voluptatibus quibusdam laborum
-            voluptas facere corrupti minima, ipsa eaque sequi illo illum nostrum
-            amet facilis nesciunt, numquam laboriosam cum?
-          </p>
+          <p className="font-semibold text-lg">{data?.full_name}</p>
+          <p className="text-sm text-gray-500">{data?.username}</p>
+          <p className="mt-2">{data?.biography}</p>
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 bg-[#F8F8F8] rounded-xl p-8 gap-8 lg:p-5 lg:gap-5 mt-12">
@@ -58,7 +51,9 @@ const Result = () => {
         </div>
         <div>
           <div className="bg-white aspect-video flex items-center justify-center rounded-xl shadow-md">
-            <p className="text-xl font-bold">5.6 M</p>
+            <p className="text-xl font-bold">
+              {millify(data?.edge_followed_by?.count || 0)}
+            </p>
           </div>
           <p className="text-sm font-medium text-center mt-2">Followers</p>
         </div>
@@ -94,13 +89,13 @@ const Result = () => {
       <div className="mt-12">
         <p className="text-lg md:text-xl font-bold">Latest Posts</p>
         <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {new Array(12).fill("").map((item, index) => (
+          {data?.edge_owner_to_timeline_media?.edges.map(({ node }) => (
             <div
-              key={index}
+              key={node?.id}
               className="aspect-square rounded-xl overflow-hidden"
             >
               <img
-                src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
+                src={`data:image/png;base64, ${data?.images[node?.id]}`}
                 alt=""
                 className="w-full h-full object-cover object-center"
               />
